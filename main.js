@@ -18,7 +18,7 @@ if (navClose) {
 }
 
 /*=============== REMOVE MENU MOBILE ===============*/
-const navLink = document.querySelector(".nav__link");
+const navLink = document.querySelectorAll(".nav__link");
 
 const linkAction = () => {
   const navMenu = document.getElementById("nav-menu");
@@ -28,7 +28,7 @@ navLink.forEach((n) => n.addEventListener("click", linkAction));
 
 /*=============== ADD SHADOW HEADER ===============*/
 const shadowHeader = () => {
-  const header = ddocument.getElementById("header");
+  const header = document.getElementById("header");
   this.scrollY >= 50
     ? header.classList.add("shadow-header")
     : header.classList.remove("shadow-header");
@@ -39,7 +39,7 @@ window.addEventListener("scroll", shadowHeader);
 const swiperPopular = new Swiper(".popular__swiper", {
   loop: true,
   grabCursor: true,
-  slidesPerview: "auto",
+  slidesPerView: "auto",
   centeredSlides: "auto",
 });
 
@@ -58,14 +58,14 @@ const scrollActive = () => {
   const scrollDown = window.scrollY;
 
   sections.forEach((current) => {
-    const sectionHeiht = current.offsetHeight,
-      sectionTop = (current.offsetTop = 58),
-      sectionId = current.getAlttribute("id"),
+    const sectionHeight = current.offsetHeight,
+      sectionTop = current.offsetTop - 58,
+      sectionId = current.getAttribute("id"),
       sectionsClass = document.querySelector(
-        ".nav__menu a[href*=" + sectionid + "]"
+        ".nav__menu a[href*=" + sectionId + "]"
       );
 
-    if (scrolldown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
+    if (scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
       sectionsClass.classList.add("active-link");
     } else {
       sectionsClass.classList.remove("active-link");
@@ -82,7 +82,7 @@ const sr = ScrollReveal({
   // reset: true, // Animation repeat
 });
 
-sr.reveal(`.home__data, popular__container`);
+sr.reveal(`.home__data, .popular__container, .footer`);
 sr.reveal(`.home__board`, { delay: 700, distance: "100px", origin: "right" });
 sr.reveal(`.home__pizza`, {
   delay: 1400,
@@ -94,5 +94,6 @@ sr.reveal(`.home__ingredient`, {
   delay: 2000,
   interval: 100,
 });
-sr.reveal(`.about__data, recipe__list`, { origin: "right" });
-sr.reveal(`.about__img, recipe__img`, { origin: "left" });
+sr.reveal(`.about__data, .recipe__list, .contact__data`, { origin: "right" });
+sr.reveal(`.about__img, .recipe__img, .contact__image`, { origin: "left" });
+sr.reveal(`.products__card`, { interval: 100 });
